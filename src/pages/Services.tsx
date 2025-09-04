@@ -11,9 +11,17 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
+import ServiceModal from "@/components/ServiceModal";
 
 const Services = () => {
   const [hoveredService, setHoveredService] = useState<number | null>(null);
+  const [selectedService, setSelectedService] = useState<any>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleLearnMore = (service: any) => {
+    setSelectedService(service);
+    setIsModalOpen(true);
+  };
 
   const services = [
     {
@@ -81,7 +89,7 @@ const Services = () => {
             {services.map((service, index) => (
               <div
                 key={index}
-                className={`group relative p-8 bg-card rounded-2xl shadow-soft hover:shadow-large transition-all duration-500 cursor-pointer ${
+                className={`group relative p-8 bg-card rounded-2xl shadow-soft hover:shadow-large transition-all duration-500 cursor-pointer flex flex-col h-full ${
                   hoveredService === index ? "scale-105" : ""
                 }`}
                 onMouseEnter={() => setHoveredService(index)}
@@ -102,10 +110,10 @@ const Services = () => {
                 </p>
 
                 {/* Features List */}
-                <div className="space-y-2 mb-6">
+                <div className="space-y-2 mb-6 flex-grow">
                   {service.features.map((feature, featureIndex) => (
                     <div key={featureIndex} className="flex items-center text-sm">
-                      <CheckCircle className="w-4 h-4 text-primary mr-2" />
+                      <CheckCircle className="w-4 h-4 text-primary mr-2 flex-shrink-0" />
                       <span className="text-muted-foreground">{feature}</span>
                     </div>
                   ))}
@@ -114,7 +122,8 @@ const Services = () => {
                 {/* Learn More Button */}
                 <Button
                   variant="outline"
-                  className="w-full group-hover:bg-primary group-hover:text-primary-foreground transition-all duration-300"
+                  className="w-full group-hover:bg-primary group-hover:text-primary-foreground transition-all duration-300 mt-auto"
+                  onClick={() => handleLearnMore(service)}
                 >
                   Learn More
                   <ArrowRight className="ml-2 w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
@@ -149,6 +158,13 @@ const Services = () => {
           </Button>
         </div>
       </section>
+
+      {/* Service Modal */}
+      <ServiceModal 
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        service={selectedService}
+      />
     </div>
   );
 };
