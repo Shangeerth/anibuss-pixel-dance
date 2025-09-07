@@ -28,20 +28,20 @@ const Navigation = () => {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         isScrolled
-          ? "bg-background/95 backdrop-blur-md shadow-soft"
-          : "bg-transparent"
+          ? "bg-background/98 backdrop-blur-md shadow-large border-b border-primary/10"
+          : "bg-background/10 backdrop-blur-sm"
       }`}
     >
       <div className="container mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-2 group">
-            <div className="w-10 h-10 bg-gradient-primary rounded-xl flex items-center justify-center transition-transform duration-300 group-hover:scale-110">
+            <div className="w-10 h-10 bg-gradient-primary rounded-xl flex items-center justify-center transition-transform duration-300 group-hover:scale-110 animate-pulse-glow">
               <span className="text-white font-poppins font-bold text-xl">A</span>
             </div>
-            <span className="text-2xl font-poppins font-bold bg-gradient-primary bg-clip-text text-transparent">
+            <span className="text-2xl font-poppins font-bold bg-gradient-primary bg-clip-text text-transparent transition-all duration-300 group-hover:scale-105">
               Anibuss
             </span>
           </Link>
@@ -66,7 +66,7 @@ const Navigation = () => {
             ))}
             <Button
               variant="outline"
-              className="font-montserrat font-semibold border-primary text-primary hover:bg-primary hover:text-primary-foreground transition-all duration-300"
+              className="font-montserrat font-semibold border-primary text-primary hover:bg-primary hover:text-primary-foreground transition-all duration-300 btn-interactive hover:animate-pulse-glow"
               asChild
             >
               <Link to="/contact">Get Started</Link>

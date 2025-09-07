@@ -53,24 +53,24 @@ const Home = () => {
             <div className="flex flex-col sm:flex-row gap-6 justify-center">
               <Button
                 size="lg"
-                className="bg-white text-primary hover:bg-white/90 font-montserrat font-semibold px-8 py-4 text-lg rounded-xl shadow-large transition-all duration-300 hover:scale-105 group"
+                className="bg-white text-primary hover:bg-white/90 font-montserrat font-semibold px-8 py-4 text-lg rounded-xl shadow-large transition-all duration-300 hover:scale-105 group btn-interactive animate-pulse-glow"
                 asChild
               >
                 <Link to="/portfolio">
                   View Our Work
-                  <ArrowRight className="ml-2 h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
+                  <ArrowRight className="ml-2 h-5 w-5 transition-transform duration-300 group-hover:translate-x-1 group-hover:animate-wiggle" />
                 </Link>
               </Button>
               
               <Button
                 variant="outline"
                 size="lg"
-                className="border-white/30 text-white hover:bg-white/10 font-montserrat font-semibold px-8 py-4 text-lg rounded-xl backdrop-blur-sm transition-all duration-300 hover:scale-105 group"
+                className="border-white/30 text-white hover:bg-white/10 font-montserrat font-semibold px-8 py-4 text-lg rounded-xl backdrop-blur-sm transition-all duration-300 hover:scale-105 group btn-interactive"
                 asChild
               >
                 <Link to="/services">
                   Our Services
-                  <Rocket className="ml-2 h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
+                  <Rocket className="ml-2 h-5 w-5 transition-transform duration-300 group-hover:translate-x-1 group-hover:animate-bounce" />
                 </Link>
               </Button>
             </div>
@@ -117,13 +117,14 @@ const Home = () => {
             ].map((feature, index) => (
               <div
                 key={index}
-                className="group p-8 bg-card rounded-2xl shadow-soft hover:shadow-medium transition-all duration-300 hover:-translate-y-2"
+                className="group p-8 bg-card rounded-2xl shadow-soft hover:shadow-medium transition-all duration-300 hover:-translate-y-2 animate-fade-in cursor-pointer"
+                style={{ animationDelay: `${index * 0.2}s` }}
               >
-                <div className="w-16 h-16 bg-gradient-primary rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-                  <feature.icon className="w-8 h-8 text-white" />
+                <div className="w-16 h-16 bg-gradient-primary rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 group-hover:animate-pulse-glow">
+                  <feature.icon className="w-8 h-8 text-white group-hover:animate-wiggle" />
                 </div>
-                <h3 className="text-2xl font-poppins font-bold mb-4">{feature.title}</h3>
-                <p className="text-muted-foreground font-roboto leading-relaxed">
+                <h3 className="text-2xl font-poppins font-bold mb-4 transition-colors duration-300 group-hover:text-primary">{feature.title}</h3>
+                <p className="text-muted-foreground font-roboto leading-relaxed transition-colors duration-300 group-hover:text-foreground">
                   {feature.description}
                 </p>
               </div>
@@ -190,12 +191,12 @@ const Home = () => {
           <div className="text-center">
             <Button
               size="lg"
-              className="bg-gradient-primary text-white hover:opacity-90 font-montserrat font-semibold px-8 py-3 rounded-xl transition-all duration-300 hover:scale-105"
+              className="bg-gradient-primary text-white hover:opacity-90 font-montserrat font-semibold px-8 py-3 rounded-xl transition-all duration-300 hover:scale-105 btn-interactive animate-pulse-glow"
               asChild
             >
               <Link to="/services">
                 View All Services
-                <ArrowRight className="ml-2 h-5 w-5" />
+                <ArrowRight className="ml-2 h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
               </Link>
             </Button>
           </div>
