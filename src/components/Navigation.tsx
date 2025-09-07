@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { ThemeToggle } from "./ThemeToggle";
 
 const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -28,7 +29,7 @@ const Navigation = () => {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+      className={`fixed top-0 left-0 right-0 z-[9999] transition-all duration-500 ${
         isScrolled
           ? "bg-background/98 backdrop-blur-md shadow-large border-b border-primary/10"
           : "bg-background/10 backdrop-blur-sm"
@@ -37,8 +38,8 @@ const Navigation = () => {
       <div className="container mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <Link to="/" className="flex items-center space-x-2 group">
-            <div className="w-10 h-10 bg-gradient-primary rounded-xl flex items-center justify-center transition-transform duration-300 group-hover:scale-110 animate-pulse-glow">
+          <Link to="/" className="flex items-center space-x-2 group" onClick={() => window.scrollTo(0, 0)}>
+            <div className="w-10 h-10 bg-gradient-primary rounded-xl flex items-center justify-center transition-transform duration-300 group-hover:scale-110 hover:animate-glow">
               <span className="text-white font-poppins font-bold text-xl">A</span>
             </div>
             <span className="text-2xl font-poppins font-bold bg-gradient-primary bg-clip-text text-transparent transition-all duration-300 group-hover:scale-105">
@@ -52,6 +53,7 @@ const Navigation = () => {
               <Link
                 key={item.name}
                 to={item.path}
+                onClick={() => window.scrollTo(0, 0)}
                 className={`font-montserrat font-medium transition-all duration-300 hover:text-primary relative group ${
                   isActive(item.path) ? "text-primary" : "text-foreground"
                 }`}
@@ -64,12 +66,13 @@ const Navigation = () => {
                 />
               </Link>
             ))}
+            <ThemeToggle />
             <Button
               variant="outline"
-              className="font-montserrat font-semibold border-primary text-primary hover:bg-primary hover:text-primary-foreground transition-all duration-300 btn-interactive hover:animate-pulse-glow"
+              className="font-montserrat font-semibold border-primary text-primary hover:bg-primary hover:text-primary-foreground transition-all duration-300 btn-interactive hover:animate-glow"
               asChild
             >
-              <Link to="/contact">Get Started</Link>
+              <Link to="/contact" onClick={() => window.scrollTo(0, 0)}>Get Started</Link>
             </Button>
           </div>
 
@@ -97,7 +100,10 @@ const Navigation = () => {
                       ? "text-primary bg-primary/10"
                       : "text-foreground hover:text-primary hover:bg-primary/5"
                   }`}
-                  onClick={() => setIsMobileMenuOpen(false)}
+                  onClick={() => {
+                    setIsMobileMenuOpen(false);
+                    window.scrollTo(0, 0);
+                  }}
                 >
                   {item.name}
                 </Link>
@@ -107,7 +113,10 @@ const Navigation = () => {
                 className="font-montserrat font-semibold border-primary text-primary hover:bg-primary hover:text-primary-foreground w-full"
                 asChild
               >
-                <Link to="/contact" onClick={() => setIsMobileMenuOpen(false)}>
+                <Link to="/contact" onClick={() => {
+                  setIsMobileMenuOpen(false);
+                  window.scrollTo(0, 0);
+                }}>
                   Get Started
                 </Link>
               </Button>

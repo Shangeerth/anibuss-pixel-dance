@@ -11,12 +11,24 @@ import {
   Star,
   Award,
   Target,
-  CheckCircle
+  CheckCircle,
+  ChevronUp
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 const Home = () => {
+  const heroRef = useScrollAnimation();
+  const servicesRef = useScrollAnimation();
+  const statsRef = useScrollAnimation();
+  const portfolioRef = useScrollAnimation();
+  const testimonialsRef = useScrollAnimation();
+  const ctaRef = useScrollAnimation();
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
@@ -29,9 +41,9 @@ const Home = () => {
         </div>
 
         <div className="container mx-auto px-6 text-center relative z-10">
-          <div className="animate-slide-up">
+          <div className={`transition-all duration-1000 ${heroRef.isVisible ? 'opacity-100 transform translate-y-0' : 'opacity-0 transform translate-y-10'}`}>
             <div className="flex items-center justify-center mb-6">
-              <Sparkles className="w-8 h-8 text-white mr-3 animate-pulse" />
+              <Sparkles className="w-8 h-8 text-white mr-3" />
               <span className="text-white/90 font-montserrat font-medium tracking-wide">
                 Digital Innovation Starts Here
               </span>
@@ -53,10 +65,10 @@ const Home = () => {
             <div className="flex flex-col sm:flex-row gap-6 justify-center">
               <Button
                 size="lg"
-                className="bg-white text-primary hover:bg-white/90 font-montserrat font-semibold px-8 py-4 text-lg rounded-xl shadow-large transition-all duration-300 hover:scale-105 group btn-interactive animate-pulse-glow"
+                className="bg-white text-primary hover:bg-white/90 font-montserrat font-semibold px-8 py-4 text-lg rounded-xl shadow-large transition-all duration-300 hover:scale-105 group btn-interactive hover:animate-glow"
                 asChild
               >
-                <Link to="/portfolio">
+                <Link to="/portfolio" onClick={() => window.scrollTo(0, 0)}>
                   View Our Work
                   <ArrowRight className="ml-2 h-5 w-5 transition-transform duration-300 group-hover:translate-x-1 group-hover:animate-wiggle" />
                 </Link>
@@ -68,7 +80,7 @@ const Home = () => {
                 className="border-white/30 text-white hover:bg-white/10 font-montserrat font-semibold px-8 py-4 text-lg rounded-xl backdrop-blur-sm transition-all duration-300 hover:scale-105 group btn-interactive"
                 asChild
               >
-                <Link to="/services">
+                <Link to="/services" onClick={() => window.scrollTo(0, 0)}>
                   Our Services
                   <Rocket className="ml-2 h-5 w-5 transition-transform duration-300 group-hover:translate-x-1 group-hover:animate-bounce" />
                 </Link>
@@ -120,7 +132,7 @@ const Home = () => {
                 className="group p-8 bg-card rounded-2xl shadow-soft hover:shadow-medium transition-all duration-300 hover:-translate-y-2 animate-fade-in cursor-pointer"
                 style={{ animationDelay: `${index * 0.2}s` }}
               >
-                <div className="w-16 h-16 bg-gradient-primary rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 group-hover:animate-pulse-glow">
+                <div className="w-16 h-16 bg-gradient-primary rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 group-hover:animate-glow">
                   <feature.icon className="w-8 h-8 text-white group-hover:animate-wiggle" />
                 </div>
                 <h3 className="text-2xl font-poppins font-bold mb-4 transition-colors duration-300 group-hover:text-primary">{feature.title}</h3>
@@ -179,6 +191,7 @@ const Home = () => {
                 </p>
                 <Link 
                   to="/services" 
+                  onClick={() => window.scrollTo(0, 0)}
                   className="text-primary hover:text-primary/80 font-montserrat font-medium text-sm transition-colors duration-300 inline-flex items-center group/link"
                 >
                   Learn More
@@ -191,10 +204,10 @@ const Home = () => {
           <div className="text-center">
             <Button
               size="lg"
-              className="bg-gradient-primary text-white hover:opacity-90 font-montserrat font-semibold px-8 py-3 rounded-xl transition-all duration-300 hover:scale-105 btn-interactive animate-pulse-glow"
+              className="bg-gradient-primary text-white hover:opacity-90 font-montserrat font-semibold px-8 py-3 rounded-xl transition-all duration-300 hover:scale-105 btn-interactive hover:animate-glow"
               asChild
             >
-              <Link to="/services">
+              <Link to="/services" onClick={() => window.scrollTo(0, 0)}>
                 View All Services
                 <ArrowRight className="ml-2 h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
               </Link>
@@ -265,7 +278,7 @@ const Home = () => {
               className="bg-gradient-primary text-white hover:opacity-90 font-montserrat font-semibold px-8 py-3 rounded-xl transition-all duration-300 hover:scale-105"
               asChild
             >
-              <Link to="/portfolio">
+              <Link to="/portfolio" onClick={() => window.scrollTo(0, 0)}>
                 View Full Portfolio
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Link>
@@ -369,7 +382,7 @@ const Home = () => {
                 className="bg-gradient-primary text-white hover:opacity-90 font-montserrat font-semibold px-8 py-4 text-lg rounded-xl shadow-large transition-all duration-300 hover:scale-105 group"
                 asChild
               >
-                <Link to="/contact">
+                <Link to="/contact" onClick={() => window.scrollTo(0, 0)}>
                   Get Started Today
                   <ArrowRight className="ml-2 h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
                 </Link>
@@ -381,7 +394,7 @@ const Home = () => {
                 className="font-montserrat font-semibold px-8 py-4 text-lg rounded-xl transition-all duration-300 hover:scale-105"
                 asChild
               >
-                <Link to="/about">
+                <Link to="/about" onClick={() => window.scrollTo(0, 0)}>
                   Learn More About Us
                 </Link>
               </Button>
@@ -398,6 +411,15 @@ const Home = () => {
           </div>
         </div>
       </section>
+
+      {/* Back to Top Button */}
+      <Button
+        onClick={scrollToTop}
+        className="fixed bottom-24 right-6 z-40 w-12 h-12 rounded-full bg-primary hover:bg-primary/90 shadow-large opacity-80 hover:opacity-100 transition-all duration-300 hover:animate-glow"
+        size="icon"
+      >
+        <ChevronUp className="h-5 w-5 text-white" />
+      </Button>
     </div>
   );
 };
